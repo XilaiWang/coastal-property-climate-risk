@@ -1,0 +1,19 @@
+# Requirements for Coastal Property Climate Risk Pricing notebook
+# IB9JV Programming for Data Analytics — 2025-2026
+#
+# Install all dependencies with:
+#   pip install -r requirements.txt
+#
+# Python 3.10+ recommended.
+
+geopandas>=1.0
+pandas>=2.0
+numpy>=1.26
+matplotlib>=3.8
+seaborn>=0.13
+scikit-learn>=1.4
+xgboost>=2.0
+shapely>=2.0
+pyproj>=3.6
+pyogrio>=0.7
+scipy>=1.10
