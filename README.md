@@ -24,6 +24,12 @@ This project simulates the work of a **risk management analyst at a UK commercia
 
 ---
 
+<p align="center">
+  <img src="figures/readme/readme_geo_risk_map.png" width="85%" alt="Geographic Risk Map — 地理风险地图">
+</p>
+
+---
+
 ## What This Project Demonstrates · 项目能力展示
 
 ### End-to-End Data Science Workflow · 全流程数据科学工作流
@@ -43,11 +49,21 @@ This project simulates the work of a **risk management analyst at a UK commercia
 
 `Python` · `pandas` · `GeoPandas` · `scikit-learn` · `XGBoost` · `matplotlib` · `seaborn` · `shapely` · `NumPy` · `SciPy`
 
+### Statistical Rigour · 统计严谨性
+
+<p align="center">
+  <img src="figures/readme/readme_log_transform.png" width="90%" alt="Log Transform — 对数变换">
+</p>
+
 ---
 
 ## Results · 模型结果
 
-### Model Performance · 模型性能（对数房价预测）
+### Model Performance · 模型性能
+
+<p align="center">
+  <img src="figures/readme/readme_model_performance.png" width="85%" alt="Model Performance Comparison — 模型性能对比">
+</p>
 
 | Model · 模型 | RMSE | R² | Strategy · 策略 |
 |---|---|---|---|
@@ -56,15 +72,37 @@ This project simulates the work of a **risk management analyst at a UK commercia
 | **RandomForest + GridSearchCV** ★ | **0.3338** | **0.6503** | Bagging · 装袋法 |
 | XGBoost + GridSearchCV | 0.3401 | 0.6371 | Boosting · 提升法 |
 
+The Test RMSE of **~0.33** translates to an average prediction error of **±39%** in raw price space (e^0.33 − 1). Given the absence of micro-level features (bedrooms, interior condition), this is highly effective for macro-level portfolio risk screening.
+
+测试集 RMSE **~0.33** 对应原始价格空间约 **±39%** 的平均预测误差。在缺乏微观特征（卧室数、室内状况）的前提下，该精度对于宏观层面的按揭组合风险筛查而言是高效的。
+
+### What Determines Coastal Property Prices? · 什么决定了海岸房产价格？
+
+<p align="center">
+  <img src="figures/readme/readme_feature_importance.png" width="90%" alt="Feature Importance — 特征重要性">
+</p>
+
+**EN:** Feature importance from the Random Forest best estimator reveals that **distance to erosion boundary is the 2nd most influential predictor** (importance = 0.2025), second only to property type (Detached = 0.3152). This confirms the environmental discount is a real, measurable signal in UK property markets — not just a theoretical concern.
+
+**中文：** 随机森林最佳估计器的特征重要性显示，**距侵蚀边界距离是第2大最具影响力的预测因子**（重要性 = 0.2025），仅次于房产类型（独栋 = 0.3152）。这证实了环境折价在英国房产市场中是一个真实、可量化的信号，而非纯粹的理论担忧。
+
+> ⚠️ **Critical Caveat · 批判性警示:** Feature importance reflects predictive association, not causation. `dist_to_erosion_m` likely acts as a **proxy variable** for a chain of effects: erosion proximity → higher insurance premiums → reduced mortgage availability → smaller buyer pool → lower transaction prices. For portfolio risk screening, the predictive association is sufficient — we are not claiming erosion *causes* the discount, we are saying it *predicts* it.
+>
+> 特征重要性反映的是预测性关联，而非因果关系。`dist_to_erosion_m` 很可能作为整个传导链的**代理变量**：侵蚀邻近 → 保险费上涨 → 按揭可得性降低 → 买家群体缩小 → 成交价下降。对银行组合风险筛查而言，预测性关联已足够——我们并非声称侵蚀"导致"了折价，而是它"预测"了折价。
+
 ### Key Business Insight · 核心商业洞察
 
-**EN:** The relationship between erosion proximity and property price is **non-linear with threshold effects** — prices don't drop gradually as you approach the coast. Instead, there's a measurable discount zone where the market suddenly prices in environmental risk. A linear model cannot capture this; ensemble tree methods can.
+<p align="center">
+  <img src="figures/readme/readme_erosion_nonlinear.png" width="90%" alt="Non-Linear Erosion Discount — 非线性侵蚀折价">
+</p>
+
+**EN:** The relationship between erosion proximity and property price is **non-linear with threshold effects** — prices don't drop gradually as you approach the coast. Instead, there's a measurable discount zone where the market suddenly prices in environmental risk. The binned-mean trend lines above confirm why a linear model (R² = 0.56) fails and why tree-based ensembles (R² = 0.65) are required.
 
 Bagging (Random Forest) outperformed Boosting (XGBoost) because coastal property data has inherently high variance from macro-level confounders (interest rates, local demand shocks). Bagging's variance-reduction mechanism is better suited to this signal-to-noise environment.
 
 ---
 
-**中文：** 侵蚀距离与房价之间的关系是**非线性的，且存在阈值效应**——房价并非随靠近海岸而线性下跌，而是在某个临界区域内，市场会突然对环境风险进行大幅折价。线性模型无法捕捉这种突变模式，而集成树方法可以。
+**中文：** 侵蚀距离与房价之间的关系是**非线性的，且存在阈值效应**——房价并非随靠近海岸而线性下跌，而是在某个临界区域内，市场会突然对环境风险进行大幅折价。上方的分组均值趋势线证实了为什么线性模型（R² = 0.56）会失败，为什么树集成模型（R² = 0.65）必不可少。
 
 装袋法（Random Forest）优于提升法（XGBoost）的原因在于：海岸房产数据天然具有高方差——利率波动、本地需求冲击等宏观混杂因素使个别交易噪声极大。装袋法的方差缩减机制更适合这种低信噪比场景。
 
@@ -76,7 +114,9 @@ Bagging (Random Forest) outperformed Boosting (XGBoost) because coastal property
 ├── Coastal_Property_Climate_Risk_Pricing_IB9JV.ipynb  ← 主分析 Notebook（双语标注）
 ├── requirements.txt                                    ← Python 依赖清单
 ├── README.md                                           ← 本文件
-├── figures/                                            ← EDA 可视化输出（5张PNG）
+├── generate_readme_figures.py                          ← README 图表生成脚本
+├── figures/                                            ← 可视化输出
+│   ├── readme/                                         ←   README 专用图表（6张，脚本生成）
 │   ├── fig1_geo_scatter.png         地理散点分布图
 │   ├── fig2_dist_logprice.png       对数房价分布图
 │   ├── fig3_distributions.png       多变量分布面板图
@@ -108,6 +148,9 @@ pip install -r requirements.txt
 
 # 3. Open the notebook · 打开 Notebook
 jupyter notebook Coastal_Property_Climate_Risk_Pricing_IB9JV.ipynb
+
+# 4. (Optional) Regenerate README figures · （可选）重新生成README图表
+python generate_readme_figures.py
 ```
 
 **EN:** The notebook auto-installs dependencies in its first cell and reads from pre-computed intermediate files (`processed/*.gpkg`) to ensure full reproducibility without raw data dependency.
@@ -137,4 +180,4 @@ jupyter notebook Coastal_Property_Climate_Risk_Pricing_IB9JV.ipynb
 
 *Built by **Xilai Wang** · MSc Business Analytics @ Warwick Business School*  
 *Interested in data science roles where rigorous methodology meets real business risk.*  
-*寻求能将严谨分析方法论与真实商业风险相结合的數據科學岗位。*
+*寻求能将严谨分析方法论与真实商业风险相结合的数据科学岗位。*
