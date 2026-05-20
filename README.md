@@ -174,10 +174,10 @@ python generate_readme_figures.py
 | **Course · 课程** | IB9JV Programming for Data Analytics, Warwick Business School (2025–2026)<br>华威大学商学院《数据分析编程》 |
 | **Scenario · 场景** | Risk management analyst at a British commercial bank<br>英国商业银行风险管理分析师 |
 | **Assessment · 考核** | Full decision-record trail documenting every analytical choice with statistical justification<br>完整决策记录链——对每个分析选择给出统计学正当性论证 |
-| **Award · 成绩** | MSc Business Analytics, University of Warwick<br>华威大学商业分析硕士 |
+| **Award · 成绩** | MSc Management of Information Systems & Digital Innovation, University of Warwick<br>华威大学管理信息系统与数字创新硕士 |
 
 ---
 
-*Built by **Xilai Wang** · MSc Business Analytics @ Warwick Business School*  
+*Built by **Xilai Wang** · MSc Management of Information Systems & Digital Innovation @ Warwick Business School*  
 *Interested in data science roles where rigorous methodology meets real business risk.*  
 *寻求能将严谨分析方法论与真实商业风险相结合的数据科学岗位。*
